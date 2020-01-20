@@ -1,15 +1,5 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// const app = <div>dddd</div>;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { App } from './components/Func/App';
 
-// ReactDOM.render(app, document.getElementById('root'));
-
-const getResource = async url => {
-    const res = await fetch(url);
-    const body = await res.json();
-    return body;
-};
-
-getResource('https://swapi.co/api/planets/1/').then(body =>
-    console.log(body.name)
-);
+ReactDOM.render(<App />, document.getElementById('root'));
