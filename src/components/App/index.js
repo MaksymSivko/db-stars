@@ -5,10 +5,12 @@ import { Header } from '../Header';
 import { RandomePlanet } from '../RandomePlanet';
 import { ItemList } from '../ItemList';
 import { PersonDetails } from '../PersonDetails';
+import { ErrorIncator } from '../ErrorIncator';
 
 export class App extends Component {
     state = {
-        selectedPersone: 1
+        selectedPersone: 1,
+        hasError: false
     };
 
     onItemSelected = id => {
@@ -17,7 +19,17 @@ export class App extends Component {
         });
     };
 
+    componentDidCatch() {
+        this.setState({
+            hasError: true
+        });
+    }
+
     render() {
+        if (this.state.hasError) {
+            return <ErrorIncator />;
+        }
+
         return (
             <>
                 <Header />
