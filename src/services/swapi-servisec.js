@@ -46,6 +46,7 @@ export class SwapiService {
 
     _transformPlanet = planet => {
         const { name, population, rotation_period, diameter } = planet;
+
         return {
             id: this._extractId(planet),
             name: name,
@@ -82,6 +83,7 @@ export class SwapiService {
 
     _transformPerson = person => {
         const { name, gender, birth_year, eye_color } = person;
+
         return {
             id: this._extractId(person),
             name: name,
