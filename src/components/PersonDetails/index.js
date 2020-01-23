@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { SwapiService } from '../../services/swapi-servisec';
 import './style.css';
 import { Spinner } from '../Spinner';
+import { ErrorIncator } from '../ErrorIncator';
 
 export class PersonDetails extends Component {
     swapiService = new SwapiService();
 
     state = {
-        person: null
+        person: null,
+        hesError: false
     };
 
     componentDidMount() {
@@ -18,6 +20,12 @@ export class PersonDetails extends Component {
         if (this.props.personId !== prevProps.personId) {
             this.updatePersen();
         }
+    }
+
+    componentDidCatch() {
+        this.setState({
+            hasError: true
+        });
     }
 
     updatePersen() {
@@ -35,15 +43,20 @@ export class PersonDetails extends Component {
     }
 
     render() {
+        if (this.state.hasError) {
+            return <ErrorIncator />;
+        }
+
         if (!this.state.person) {
-            return <span>Select a person from a list</span>;
+            return (
+                <div className="d-flex flex-column justify-content-center text-center">
+                    <h2>Select a person from a list</h2>
+                    <Spinner />
+                </div>
+            );
         }
 
         const { id, name, gender, birthYear, eyeColor } = this.state.person;
-
-        if (!this.state.person) {
-            return <Spinner />;
-        }
 
         return (
             <div className="person-details card">

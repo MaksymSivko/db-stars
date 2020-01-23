@@ -50,7 +50,7 @@ export class RandomePlanet extends Component {
         const conten = hasDate ? <PlanetView planet={planet} /> : null;
 
         return (
-            <div className="random-planet jumbotron rounded">
+            <div className="random-planet jumbotron rounded d-flex justify-content-center">
                 {errorMessage}
                 {spinner}
                 {conten}
@@ -63,7 +63,7 @@ const PlanetView = ({ planet }) => {
     const { id, name, population, rotationPeriod, diameter } = planet;
 
     return (
-        <>
+        <div className="d-flex">
             <img
                 className="planet-image"
                 src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
@@ -86,6 +86,6 @@ const PlanetView = ({ planet }) => {
                     </li>
                 </ul>
             </div>
-        </>
+        </div>
     );
 };

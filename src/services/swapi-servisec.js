@@ -45,36 +45,49 @@ export class SwapiService {
     }
 
     _transformPlanet = planet => {
+        const { name, population, rotation_period, diameter } = planet;
         return {
             id: this._extractId(planet),
-            name: planet.name,
-            population: planet.population,
-            rotationPeriod: planet.rotation_period,
-            diameter: planet.diameter
+            name: name,
+            population: population,
+            rotationPeriod: rotation_period,
+            diameter: diameter
         };
     };
 
     _transformStarship = starship => {
+        const {
+            name,
+            model,
+            manufacturer,
+            cost_in_credits,
+            length,
+            crew,
+            passengers,
+            cargo_capacity
+        } = starship;
+
         return {
             id: this._extractId(starship),
-            name: starship.name,
-            model: starship.model,
-            manufacturer: starship.manufacturer,
-            costInCredits: starship.cost_in_credits,
-            length: starship.length,
-            crew: starship.crew,
-            passengers: starship.passengers,
-            cargoCapacity: starship.cargo_capacity
+            name: name,
+            model: model,
+            manufacturer: manufacturer,
+            costInCredits: cost_in_credits,
+            length: length,
+            crew: crew,
+            passengers: passengers,
+            cargoCapacity: cargo_capacity
         };
     };
 
     _transformPerson = person => {
+        const { name, gender, birth_year, eye_color } = person;
         return {
             id: this._extractId(person),
-            name: person.name,
-            gender: person.gender,
-            birthYear: person.birth_year,
-            eyeColor: person.eye_color
+            name: name,
+            gender: gender,
+            birthYear: birth_year,
+            eyeColor: eye_color
         };
     };
 }
