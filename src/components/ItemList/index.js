@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Spinner } from '../Spinner';
 import { SwapiService } from '../../services/swapi-servisec';
+
 import './style.css';
 
 export class ItemList extends Component {
     swapiService = new SwapiService();
 
     state = {
-        peopleList: []
+        peopleList: null
     };
 
     componentDidMount() {
@@ -34,11 +35,12 @@ export class ItemList extends Component {
 
     render() {
         const { peopleList } = this.state;
-        const items = this.renderItem(peopleList);
 
         if (!peopleList) {
             return <Spinner />;
         }
+
+        const items = this.renderItem(peopleList);
 
         return <ul className="item-list list-group">{items}</ul>;
     }

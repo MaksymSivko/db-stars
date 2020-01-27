@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { SwapiService } from '../../services/swapi-servisec';
-import './style.css';
 import { Spinner } from '../Spinner';
-import { ErrorIncator } from '../ErrorIncator';
+
+import './style.css';
 
 export class PersonDetails extends Component {
     swapiService = new SwapiService();
@@ -43,10 +43,6 @@ export class PersonDetails extends Component {
     }
 
     render() {
-        if (this.state.hasError) {
-            return <ErrorIncator />;
-        }
-
         if (!this.state.person) {
             return (
                 <div className="d-flex flex-column justify-content-center text-center">
