@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-
-import './style.css';
-
 import { Header } from '../Header';
 import { RandomPlanet } from '../RandomPlanet';
-import { ItemList } from '../ItemList';
-import { PersonDetails } from '../PersonDetails';
 import { ErrorIndicator } from '../ErrorIndicator';
 import { ErrorButton } from '../ErrorButton';
 import { PeoplePage } from '../PeoplePage';
-import { SwapiService } from '../../services/swapi-servisec';
+
+import './style.css';
+
+// import { ItemList } from '../ItemList';
+// import { PersonDetails } from '../PersonDetails';
+// import { SwapiService } from '../../services/swapi-servisec';
 
 export class App extends Component {
     state = {
