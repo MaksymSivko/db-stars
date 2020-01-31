@@ -1,69 +1,58 @@
 import React, { Component } from 'react';
 
 import './style.css';
+
 import { Header } from '../Header';
-import { RandomePlanet } from '../RandomePlanet';
+import { RandomPlanet } from '../RandomPlanet';
 import { ItemList } from '../ItemList';
 import { PersonDetails } from '../PersonDetails';
-import { ErrorIncator } from '../ErrorIncator';
-import { PlenetDetails } from '../PlenetDetails';
-import { StarshipDetails } from '../StarshipDetails';
+import { ErrorIndicator } from '../ErrorIndicator';
+import { ErrorButton } from '../ErrorButton';
+import { PeoplePage } from '../PeoplePage';
+import { SwapiService } from '../../services/swapi-servisec';
 
 export class App extends Component {
     state = {
-        selectedPersone: 1,
+        showRandomPlanet: true,
         hasError: false
     };
 
-    onItemSelected = id => {
-        this.setState({
-            selectedPersone: id
+    toggleRandomPlanet = () => {
+        this.setState(state => {
+            return {
+                showRandomPlanet: !state.showRandomPlanet
+            };
         });
     };
 
     componentDidCatch() {
-        this.setState({
-            hasError: true
-        });
+        this.setState({ hasError: true });
     }
 
     render() {
         if (this.state.hasError) {
-            return <ErrorIncator />;
+            return <ErrorIndicator />;
         }
 
+        const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
+
         return (
-            <>
+            <div className="stardb-app">
                 <Header />
-                <RandomePlanet />
+                {planet}
 
-                <div className="row mb-2 mt-5">
-                    <div className="col-md-6">
-                        <ItemList onItemSelected={this.onItemSelected} />
-                    </div>
-                    <div className="col-md-6">
-                        <PersonDetails personId={this.state.selectedPersone} />
-                    </div>
+                <div className="row mb2 button-row">
+                    <button
+                        className="toggle-planet btn btn-warning btn-lg"
+                        onClick={this.toggleRandomPlanet}
+                    >
+                        Toggle Random Planet
+                    </button>
+                    <ErrorButton />
                 </div>
 
-                <div className="row mb-2 mt-5">
-                    <div className="col-md-6">
-                        <ItemList onItemSelected={this.onItemSelected} />
-                    </div>
-                    <div className="col-md-6">
-                        <PlenetDetails />
-                    </div>
-                </div>
-
-                <div className="row mb-2 mt-5">
-                    <div className="col-md-6">
-                        <ItemList onItemSelected={this.onItemSelected} />
-                    </div>
-                    <div className="col-md-6">
-                        <StarshipDetails />
-                    </div>
-                </div>
-            </>
+                <PeoplePage />
+            </div>
         );
     }
 }

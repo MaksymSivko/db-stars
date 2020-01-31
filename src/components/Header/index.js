@@ -6,13 +6,18 @@ export const Header = () => {
     return (
         <div className="header d-flex">
             <h3>
-                StarDB
-                {/* <a>StarDB</a> */}
+                <a href="#/">StarDB</a>
             </h3>
             <ul className="d-flex">
-                <li>People{/* <a>People</a> */}</li>
-                <li>Planets{/* <a>Planets</a> */}</li>
-                <li>Starships{/* <a>Starships</a> */}</li>
+                <li>
+                    <a href="#/people">People</a>
+                </li>
+                <li>
+                    <a href="#/planets">Planets</a>
+                </li>
+                <li>
+                    <a href="#/starships">Starships</a>
+                </li>
             </ul>
         </div>
     );

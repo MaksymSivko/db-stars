@@ -1,58 +1,45 @@
 import React, { Component } from 'react';
 import { SwapiService } from '../../services/swapi-servisec';
-import { Spinner } from '../Spinner';
+// import { Spinner } from '../Spinner';
 
 import './style.css';
+import { ErrorButton } from '../ErrorButton';
 
 export class PersonDetails extends Component {
     swapiService = new SwapiService();
 
     state = {
-        person: null,
-        hesError: false
+        person: null
     };
 
     componentDidMount() {
-        this.updatePersen();
+        this.updatePerson();
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.personId !== prevProps.personId) {
-            this.updatePersen();
+            this.updatePerson();
         }
     }
 
-    componentDidCatch() {
-        this.setState({
-            hasError: true
-        });
-    }
-
-    updatePersen() {
+    updatePerson() {
         const { personId } = this.props;
-
         if (!personId) {
             return;
         }
 
         this.swapiService.getPerson(personId).then(person => {
-            this.setState({
-                person
-            });
+            this.setState({ person });
         });
     }
 
     render() {
-        if (!this.state.person) {
-            return (
-                <div className="d-flex flex-column justify-content-center text-center">
-                    <h2>Select a person from a list</h2>
-                    <Spinner />
-                </div>
-            );
+        const { person } = this.state;
+        if (!person) {
+            return <span>Select a person from a list</span>;
         }
 
-        const { id, name, gender, birthYear, eyeColor } = this.state.person;
+        const { id, name, gender, birthYear, eyeColor } = person;
 
         return (
             <div className="person-details card">
@@ -78,6 +65,7 @@ export class PersonDetails extends Component {
                             <span>{eyeColor}</span>
                         </li>
                     </ul>
+                    <ErrorButton />
                 </div>
             </div>
         );
