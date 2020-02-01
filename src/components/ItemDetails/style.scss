@@ -1,12 +1,12 @@
-.person-details {
+.item-details {
 	display: flex;
 	// margin-top: 1rem;
 	flex-direction: row;
 	padding: 1rem;
 
-	.person-image {
-		width: 30%;
-		height: 30%;
+	.item-image {
+		width: 25%;
+		height: 25%;
 		border-radius: 10px;
 	}
 

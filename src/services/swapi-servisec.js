@@ -1,95 +1,99 @@
 export class SwapiService {
     _apiBase = 'https://swapi.co/api';
+    _imageBase = 'https://starwars-visualguide.com/assets/img';
 
-    async getResource(url) {
+    getResource = async url => {
         const res = await fetch(`${this._apiBase}${url}`);
+
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}, received ${res.status}`);
         }
+
         return await res.json();
-    }
+    };
 
-    async getAllPeople() {
+    getAllPeople = async () => {
         const res = await this.getResource(`/people/`);
-        return res.results.map(this._transformPerson);
-    }
+        return res.results.map(this._transformPerson).slice(0, 5);
+    };
 
-    async getPerson(id) {
+    getPerson = async id => {
         const person = await this.getResource(`/people/${id}/`);
         return this._transformPerson(person);
-    }
+    };
 
-    async getAllPlanets() {
+    getAllPlanets = async () => {
         const res = await this.getResource(`/planets/`);
-        return res.results.map(this._transformPlanet);
-    }
+        return res.results.map(this._transformPlanet).slice(0, 5);
+    };
 
-    async getPlanet(id) {
+    getPlanet = async id => {
         const planet = await this.getResource(`/planets/${id}/`);
         return this._transformPlanet(planet);
-    }
+    };
 
-    async getAllStarships() {
+    getAllStarships = async () => {
         const res = await this.getResource(`/starships/`);
-        return res.results.map(this._transformStarship);
-    }
+        return res.results.map(this._transformStarship).slice(0, 5);
+    };
 
-    async getStarship(id) {
-        const starship = this.getResource(`/starships/${id}/`);
+    getStarship = async id => {
+        const starship = await this.getResource(`/starships/${id}/`);
         return this._transformStarship(starship);
-    }
+    };
 
-    _extractId(item) {
+    getPersonImage = ({ id }) => {
+        return `${this._imageBase}/characters/${id}.jpg`;
+    };
+
+    getStarshipImage = ({ id }) => {
+        return `${this._imageBase}/starships/${id}.jpg`;
+    };
+
+    getPlanetImage = ({ id }) => {
+        return `${this._imageBase}/planets/${id}.jpg`;
+    };
+
+    _extractId = item => {
         const idRegExp = /\/([0-9]*)\/$/;
         return item.url.match(idRegExp)[1];
-    }
+    };
 
     _transformPlanet = planet => {
-        const { name, population, rotation_period, diameter } = planet;
-
         return {
             id: this._extractId(planet),
-            name: name,
-            population: population,
-            rotationPeriod: rotation_period,
-            diameter: diameter
+            name: planet.name,
+            diameter: planet.diameter,
+            gravity: planet.gravity,
+            orbitalPeriod: planet.orbital_period,
+            population: planet.population,
+            terrain: planet.terrain,
+            climate: planet.climate,
+            rotationPeriod: planet.rotation_period
         };
     };
 
     _transformStarship = starship => {
-        const {
-            name,
-            model,
-            manufacturer,
-            cost_in_credits,
-            length,
-            crew,
-            passengers,
-            cargo_capacity
-        } = starship;
-
         return {
             id: this._extractId(starship),
-            name: name,
-            model: model,
-            manufacturer: manufacturer,
-            costInCredits: cost_in_credits,
-            length: length,
-            crew: crew,
-            passengers: passengers,
-            cargoCapacity: cargo_capacity
+            name: starship.name,
+            model: starship.model,
+            manufacturer: starship.manufacturer,
+            costInCredits: starship.cost_in_credits,
+            length: starship.length,
+            crew: starship.crew,
+            passengers: starship.passengers,
+            cargoCapacity: starship.cargo_capacity
         };
     };
 
     _transformPerson = person => {
-        const { name, gender, birth_year, eye_color } = person;
-
         return {
             id: this._extractId(person),
-            name: name,
-            gender: gender,
-            birthYear: birth_year,
-            eyeColor: eye_color
+            name: person.name,
+            gender: person.gender,
+            birthYear: person.birth_year,
+            eyeColor: person.eye_color
         };
     };
 }
