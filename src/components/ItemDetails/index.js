@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SwapiService } from '../../services/swapi-servisec';
+import { SwapiService } from '../../services/swapi-service';
 import { ErrorButton } from '../ErrorButton';
 // import { Spinner } from '../Spinner';
 
@@ -53,7 +53,7 @@ export class ItemDetails extends Component {
             return <span>Select a item from a list</span>;
         }
 
-        const { name, gender, birthYear, eyeColor } = item;
+        const { name } = item;
 
         return (
             <div className="item-details card">
