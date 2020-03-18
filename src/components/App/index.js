@@ -5,9 +5,17 @@ import { ErrorBoundry } from '../ErrorBoundry';
 import { RandomPlanet } from '../RandomPlanet';
 import { Row } from '../Row';
 
-import { PersonDetails, PlanetDetails, StarshipDetails } from '../Details';
+import {
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails
+} from '../sw-components/Details';
 
-import { PersonList, PlanetList, StarshipList } from '../ListItem';
+import {
+  PersonList,
+  PlanetList,
+  StarshipList
+} from '../sw-components/ListItem';
 
 import './style.css';
 

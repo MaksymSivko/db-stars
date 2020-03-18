@@ -1,7 +1,7 @@
 import React from 'react';
-import { ItemList } from '../ItemList';
-import { withData } from '../HOC';
-import { SwapiService } from '../../services/swapi-service';
+import { ItemList } from '../../ItemList';
+import { withData } from '../../HOC';
+import { SwapiService } from '../../../services/swapi-service';
 
 const swapiService = new SwapiService();
 
@@ -25,12 +25,10 @@ export const PersonList = withData(
   withChildFunction(ItemList, renderName),
   getAllPeople
 );
-
 export const PlanetList = withData(
   withChildFunction(ItemList, renderName),
   getAllPlanets
 );
-
 export const StarshipList = withData(
   withChildFunction(ItemList, renderModelAndName),
   getAllStarships

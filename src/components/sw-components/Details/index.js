@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ItemDetails, Record } from '../ItemDetails';
-import { SwapiService } from '../../services/swapi-service';
+import { ItemDetails, Record } from '../../ItemDetails';
+import { SwapiService } from '../../../services/swapi-service';
 
 const swapiService = new SwapiService();
 
