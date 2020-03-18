@@ -3,19 +3,13 @@ import { ItemList } from '../../ItemList';
 import { withData } from '../../HOC/with-data';
 import { withSwapiService } from '../../HOC/with-swapi-service';
 
-const withChildFunction = (Wrapped, fn) => {
+const withChildFunction = fn => Wrapped => {
   return props => {
     return <Wrapped {...props}>{fn}</Wrapped>;
   };
 };
 
 const renderName = ({ name }) => <span>{name}</span>;
-
-const renderModelAndName = ({ model, name }) => (
-  <span>
-    {name} ({model})
-  </span>
-);
 
 const mapPersonMethodsToProps = swapiService => {
   return {
@@ -33,17 +27,14 @@ const mapStarshipMethodsToProps = swapiService => {
   };
 };
 
-export const PersonList = withSwapiService(
-  withData(withChildFunction(ItemList, renderName)),
-  mapPersonMethodsToProps
+export const PersonList = withSwapiService(mapPersonMethodsToProps)(
+  withData(withChildFunction(renderName)(ItemList))
 );
 
-export const PlanetList = withSwapiService(
-  withData(withChildFunction(ItemList, renderName)),
-  mapPlanetMethodsToProps
+export const PlanetList = withSwapiService(mapPlanetMethodsToProps)(
+  withData(withChildFunction(renderName)(ItemList))
 );
 
-export const StarshipList = withSwapiService(
-  withData(withChildFunction(ItemList, renderModelAndName)),
-  mapStarshipMethodsToProps
+export const StarshipList = withSwapiService(mapStarshipMethodsToProps)(
+  withData(withChildFunction(renderName)(ItemList))
 );

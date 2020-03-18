@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { SwapiService } from '../../services/swapi-service';
 import { ErrorButton } from '../ErrorButton';
-// import { Spinner } from '../Spinner';
 
 import './style.css';
 
@@ -15,15 +13,13 @@ export const Record = ({ item, field, label }) => {
 };
 
 export class ItemDetails extends Component {
-  swapiService = new SwapiService();
-
   state = {
     item: null,
     image: null
   };
 
   componentDidMount() {
-    this.updatePerson();
+    this.updateItem();
   }
 
   componentDidUpdate(prevProps) {
@@ -32,12 +28,13 @@ export class ItemDetails extends Component {
       this.props.getData !== prevProps.getData ||
       this.props.getImageUrl !== prevProps.getImageUrl
     ) {
-      this.updatePerson();
+      this.updateItem();
     }
   }
 
-  updatePerson() {
+  updateItem() {
     const { itemId, getData, getImageUrl } = this.props;
+
     if (!itemId) {
       return;
     }
@@ -61,11 +58,12 @@ export class ItemDetails extends Component {
 
     return (
       <div className="item-details card">
-        <img className="item-image" src={image} alt="character" />
+        <img className="item-image" src={image} alt="item" />
+
         <div className="card-body">
           <h4>{name}</h4>
           <ul className="list-group list-group-flush">
-            {React.Children.map(this.props.children, (child, indx) => {
+            {React.Children.map(this.props.children, child => {
               return React.cloneElement(child, { item });
             })}
           </ul>
