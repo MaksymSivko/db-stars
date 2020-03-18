@@ -12,46 +12,37 @@ import { PersonList, PlanetList, StarshipList } from '../ListItem';
 import './style.css';
 
 export class App extends Component {
-    swapiService = new SwapiService();
+  swapiService = new SwapiService();
 
-    state = {
-        showRandomPlanet: true
-    };
+  state = {
+    showRandomPlanet: true
+  };
 
-    toggleRandomPlanet = () => {
-        this.setState(state => {
-            return {
-                showRandomPlanet: !state.showRandomPlanet
-            };
-        });
-    };
+  toggleRandomPlanet = () => {
+    this.setState(state => {
+      return {
+        showRandomPlanet: !state.showRandomPlanet
+      };
+    });
+  };
 
-    render() {
-        const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
+  render() {
+    const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
-        return (
-            <ErrorBoundry>
-                <div className="stardb-app">
-                    <Header />
+    return (
+      <ErrorBoundry>
+        <div className="stardb-app">
+          <Header />
 
-                    {planet}
+          {planet}
 
-                    <Row
-                        left={<PersonList />}
-                        right={<PersonDetails itemId={11} />}
-                    />
+          <Row left={<PersonList />} right={<PersonDetails itemId={11} />} />
 
-                    <Row
-                        left={<PlanetList />}
-                        right={<PlanetDetails itemId={5} />}
-                    />
+          <Row left={<PlanetList />} right={<PlanetDetails itemId={5} />} />
 
-                    <Row
-                        left={<StarshipList />}
-                        right={<StarshipDetails itemId={9} />}
-                    />
-                </div>
-            </ErrorBoundry>
-        );
-    }
+          <Row left={<StarshipList />} right={<StarshipDetails itemId={9} />} />
+        </div>
+      </ErrorBoundry>
+    );
+  }
 }
