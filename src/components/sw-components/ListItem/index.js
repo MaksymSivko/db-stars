@@ -1,13 +1,9 @@
 import React from 'react';
 import { ItemList } from '../../ItemList';
 import { withData } from '../../HOC/with-data';
+import { withChildFunction } from '../../HOC/with-child-function';
 import { withSwapiService } from '../../HOC/with-swapi-service';
-
-const withChildFunction = fn => Wrapped => {
-  return props => {
-    return <Wrapped {...props}>{fn}</Wrapped>;
-  };
-};
+import { compose } from '../../HOC/compose';
 
 const renderName = ({ name }) => <span>{name}</span>;
 
@@ -29,14 +25,20 @@ const mapStarshipMethodsToProps = swapiService => {
   };
 };
 
-export const PersonList = withSwapiService(mapPersonMethodsToProps)(
-  withData(withChildFunction(renderName)(ItemList))
-);
+export const PersonList = compose(
+  withSwapiService(mapPersonMethodsToProps),
+  withData,
+  withChildFunction(renderName)
+)(ItemList);
 
-export const PlanetList = withSwapiService(mapPlanetMethodsToProps)(
-  withData(withChildFunction(renderName)(ItemList))
-);
+export const PlanetList = compose(
+  withSwapiService(mapPlanetMethodsToProps),
+  withData,
+  withChildFunction(renderName)
+)(ItemList);
 
-export const StarshipList = withSwapiService(mapStarshipMethodsToProps)(
-  withData(withChildFunction(renderName)(ItemList))
-);
+export const StarshipList = compose(
+  withSwapiService(mapStarshipMethodsToProps),
+  withData,
+  withChildFunction(renderName)
+)(ItemList);
