@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row } from '../Row';
 import { StarshipList } from '../sw-components/ListItem';
-import { StarshipDetails } from '../sw-components/Starship-details';
+import StarshipDetails from '../sw-components/Starship-details';
 
 export class StarshipPage extends Component {
   state = {
