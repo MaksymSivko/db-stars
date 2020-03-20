@@ -16,11 +16,13 @@ const mapPersonMethodsToProps = swapiService => {
     getData: swapiService.getAllPeople
   };
 };
+
 const mapPlanetMethodsToProps = swapiService => {
   return {
     getData: swapiService.getAllPlanets
   };
 };
+
 const mapStarshipMethodsToProps = swapiService => {
   return {
     getData: swapiService.getAllStarships
