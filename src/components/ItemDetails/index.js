@@ -34,7 +34,6 @@ export class ItemDetails extends Component {
 
   updateItem() {
     const { itemId, getData, getImageUrl } = this.props;
-
     if (!itemId) {
       return;
     }
@@ -49,7 +48,6 @@ export class ItemDetails extends Component {
 
   render() {
     const { item, image } = this.state;
-
     if (!item) {
       return <span>Select a item from a list</span>;
     }

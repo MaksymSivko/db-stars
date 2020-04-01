@@ -13,6 +13,12 @@ import { SwapiServiceProvider } from '../Swapi-service-context';
 
 import './style.css';
 
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import StarshipDetails from '../sw-components/Starship-details';
+import PersonDetails from '../sw-components/Person-details';
+import PlanetDetails from '../sw-components/Planet-details';
+
 export class App extends Component {
   state = {
     swapiService: new SwapiService()
@@ -33,14 +39,46 @@ export class App extends Component {
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService}>
-          <div className="stardb-app">
-            <Header onServiceChange={this.onServiceChange} />
+          <Router>
+            <div className="stardb-app">
+              <Header onServiceChange={this.onServiceChange} />
 
-            <RandomPlanet updataInterval={5000} />
-            <PeoplePage />
-            <PlanetPage />
-            <StarshipPage />
-          </div>
+              <RandomPlanet updataInterval={5000} />
+
+              <Route
+                path="/"
+                exact
+                render={() => <h2> Welcome To StarDB</h2>}
+              />
+
+              <Route path="/people" exact component={PeoplePage} />
+              <Route
+                path="/people/:id"
+                render={({ match }) => {
+                  const { id } = match.params;
+                  return <PersonDetails itemId={id} />;
+                }}
+              />
+
+              <Route path="/planet" exact component={PlanetPage} />
+              <Route
+                path="/planet/:id"
+                render={({ match }) => {
+                  const { id } = match.params;
+                  return <PlanetDetails itemId={id} />;
+                }}
+              />
+
+              <Route path="/starship" exact component={StarshipPage} />
+              <Route
+                path="/starship/:id"
+                render={({ match }) => {
+                  const { id } = match.params;
+                  return <StarshipDetails itemId={id} />;
+                }}
+              />
+            </div>
+          </Router>
         </SwapiServiceProvider>
       </ErrorBoundry>
     );
