@@ -15,12 +15,7 @@ import { SwapiServiceProvider } from '../Swapi-service-context';
 
 import './style.css';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import StarshipDetails from '../sw-components/Starship-details';
 import PlanetDetails from '../sw-components/Planet-details';
