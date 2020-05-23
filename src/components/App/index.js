@@ -23,12 +23,12 @@ import PlanetDetails from '../sw-components/Planet-details';
 export class App extends Component {
   state = {
     swapiService: new SwapiService(),
-    isLoggedIn: false
+    isLoggedIn: false,
   };
 
   onLogin = () => {
     this.setState({
-      isLoggedIn: true
+      isLoggedIn: true,
     });
   };
 
@@ -38,7 +38,7 @@ export class App extends Component {
         swapiService instanceof SwapiService ? DummySwapiService : SwapiService;
 
       return {
-        swapiService: new Service()
+        swapiService: new Service(),
       };
     });
   };
@@ -90,7 +90,6 @@ export class App extends Component {
                   render={() => <SecretPage isLoggedIn={isLoggedIn} />}
                 />
 
-                {/* <Redirect to="/" /> */}
                 <Route render={() => <div>Page not found !!!</div>} />
               </Switch>
             </div>

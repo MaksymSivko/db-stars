@@ -1,5 +1,0 @@
-<App> ->
-	<Header />
-	<RandomePlanet />
-	<ItemList />
-	<PersonDetails />
