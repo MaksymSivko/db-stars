@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { ErrorIndicator } from '../ErrorIndicator';
-import { Spinner } from '../Spinner';
+import React, {Component} from 'react';
+import {ErrorIndicator} from '../ErrorIndicator';
+import {Spinner} from '../Spinner';
 
 export const withData = View => {
   return class extends Component {
@@ -43,17 +43,17 @@ export const withData = View => {
     }
 
     render() {
-      const { data, loading, error } = this.state;
+      const {data, loading, error} = this.state;
 
       if (loading) {
-        return <Spinner />;
+        return <Spinner/>;
       }
 
       if (error) {
-        return <ErrorIndicator />;
+        return <ErrorIndicator/>;
       }
 
-      return <View {...this.props} data={data} />;
+      return <View {...this.props} data={data}/>;
     }
   };
 };

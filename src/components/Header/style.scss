@@ -1,32 +1,32 @@
 .header {
-	margin-top: .5rem;
-	padding-left: 10px;
+  margin-top: .5rem;
+  padding-left: 10px;
 
-	ul li {
-		list-style: none;
-		margin: 0;
-		padding: .5rem 1rem;
-		border-radius: 3px;
+  ul li {
+    list-style: none;
+    margin: 0;
+    padding: .5rem 1rem;
+    border-radius: 3px;
 
-		&:hover {
-			background-color: #444;
-		}
-	}
+    &:hover {
+      background-color: #444;
+    }
+  }
 
-	a:hover {
-		text-decoration: none;
-	}
+  a:hover {
+    text-decoration: none;
+  }
 
-	h3 a {
-		color: white;
-	}
+  h3 a {
+    color: white;
+  }
 
-	h3 a:hover {
-		color: #00bc8c;
-	}
+  h3 a:hover {
+    color: #00bc8c;
+  }
 
-	button {
-		height: 2rem;
-		margin-top: 3px;
-	}
+  button {
+    height: 2rem;
+    margin-top: 3px;
+  }
 }
